@@ -19,7 +19,24 @@ class UsersController {
                 message: error.message
             })
         }
+    }
 
+    async getAll(req: Request, res: Response): Promise<Response> {
+        const { email } = req.body
+
+        const usersService = new UsersService();
+
+        try {
+
+            const users = await usersService.getAll()
+            return res.json(users);
+
+        } catch (error) {
+
+            return res.status(400).json({
+                message: error.message
+            })
+        }
     }
 }
 
